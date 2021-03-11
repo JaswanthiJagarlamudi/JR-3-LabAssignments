@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.cg.bsm.dao.BookDAOJPAImpl;
+import com.cg.bsm.dao.BookDAOJDBCImpl;
 import com.cg.bsm.dao.IBookDAO;
 import com.cg.bsm.exception.BookStoreException;
-import com.cg.bsm.entity.Book;
+import com.cg.bsm.model.Book;
 
 public class BookServiceImpl implements IBookService {
 	
@@ -22,9 +22,7 @@ public class BookServiceImpl implements IBookService {
 	public BookServiceImpl() throws BookStoreException {
 		// bookDao = new BookDAOCollectionImpl();
 		// bookDao = new BookDAOIOStreamImpl();
-		//bookDao = new BookDAOJDBCImpl();
-		bookDao=new BookDAOJPAImpl();
-		
+		bookDao = new BookDAOJDBCImpl();
 		
 	}
 	
@@ -98,7 +96,7 @@ public class BookServiceImpl implements IBookService {
 	public String add(Book book) throws BookStoreException {
 		String bcode=null;
 		if(book!=null && isValidBook(book)){
-			bcode=bookDao.add_book(book);
+			bcode=bookDao.add(book);
 		}
 		return bcode;
 	}
@@ -107,7 +105,7 @@ public class BookServiceImpl implements IBookService {
 	public boolean delete(String bcode) throws BookStoreException {
 		boolean isDone=false;
 		if(bcode!=null && isValidBcode(bcode)){
-			bookDao.remove_book(bcode);
+			bookDao.delete(bcode);
 			isDone = true;
 		}else{
 			throw new BookStoreException("bcode should be a capital letter followed by 3 digits");
@@ -117,12 +115,12 @@ public class BookServiceImpl implements IBookService {
 
 	@Override
 	public Book get(String bcode) throws BookStoreException {
-		return bookDao.search_book(bcode);
+		return bookDao.get(bcode);
 	}
 
 	@Override
 	public List<Book> getAll() throws BookStoreException {
-		return bookDao.list_books();
+		return bookDao.getAll();
 	}
 
 	@Override
@@ -130,7 +128,7 @@ public class BookServiceImpl implements IBookService {
 		boolean isDone = false;
 		
 		if(book!=null && isValidBook(book)){
-			isDone = bookDao.update_book(book);
+			isDone = bookDao.update(book);
 		}
 		
 		return isDone;
@@ -142,5 +140,4 @@ public class BookServiceImpl implements IBookService {
 		bookDao.persist();
 	}
 }
-
 

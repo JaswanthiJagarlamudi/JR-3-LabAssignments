@@ -1,6 +1,6 @@
 package com.cg.bsm.service;
 
-import com.cg.bsm.entity.Book;
+import com.cg.bsm.model.Book;
 import com.cg.bsm.exception.BookStoreException;
 
 import java.util.List;
@@ -13,4 +13,3 @@ public interface IBookService {
 	boolean update(Book book) throws BookStoreException;
 	void persist()throws BookStoreException;
 }
-

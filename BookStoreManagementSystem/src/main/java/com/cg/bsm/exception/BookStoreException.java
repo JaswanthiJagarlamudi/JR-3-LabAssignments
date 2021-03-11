@@ -6,4 +6,3 @@ public class BookStoreException extends Exception {
 		super(errMsg);
 	}
 }
-

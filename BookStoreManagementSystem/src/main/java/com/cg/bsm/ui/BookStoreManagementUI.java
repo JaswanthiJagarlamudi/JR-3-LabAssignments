@@ -7,8 +7,8 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.cg.bsm.exception.BookStoreException;
-import com.cg.bsm.entity.Book;
-import com.cg.bsm.entity.BookStoreAppMenu;
+import com.cg.bsm.model.Book;
+import com.cg.bsm.model.BookStoreAppMenu;
 import com.cg.bsm.service.BookServiceImpl;
 import com.cg.bsm.service.IBookService;
 
@@ -160,3 +160,4 @@ public class BookStoreManagementUI {
 		}
 	}
 }
+
